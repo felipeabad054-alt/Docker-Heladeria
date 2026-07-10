@@ -76,7 +76,8 @@ La aplicación utiliza una arquitectura de tres capas:
 │ Puerto interno: 5432         │
 │ Puerto externo: 5433         │
 └──────────────────────────────┘
-Flujo de funcionamiento
+
+✽✽Flujo de funcionamiento
 El usuario interactúa con la interfaz desarrollada en React.
 React realiza peticiones HTTP al Backend utilizando Axios.
 Express recibe las solicitudes y ejecuta la lógica del CRUD.
@@ -84,36 +85,38 @@ El Backend utiliza el paquete pg para conectarse con PostgreSQL.
 PostgreSQL almacena y devuelve la información.
 El Backend responde al Frontend en formato JSON.
 React actualiza dinámicamente la interfaz.
+
 🛠️ Tecnologías utilizadas
-Frontend
-React
-Vite
-JavaScript
-Axios
-Bootstrap
-HTML
-CSS
-Backend
-Node.js
-Express
-JavaScript
-CORS
-dotenv
-pg
-Nodemon
-Base de datos
-PostgreSQL 17
-SQL
-Contenedores y despliegue
-Docker
-Docker Desktop
-Docker Compose
-Dockerfile
-Volúmenes Docker
-Redes internas de Docker Compose
-Control de versiones
-Git
-GitHub
+✽✽Frontend
+    React
+    Vite
+    JavaScript
+    Axios
+    Bootstrap
+    HTML
+    CSS
+✽✽Backend
+    Node.js
+    Express
+    JavaScript
+    CORS
+    dotenv
+    pg
+    Nodemon
+✽✽Base de datos
+  PostgreSQL 17
+
+✽✽Contenedores y despliegue
+  Docker
+  Docker Desktop
+  Docker Compose
+  Dockerfile
+  Volúmenes Docker
+  Redes internas de Docker Compose
+
+✽✽Control de versiones
+  Git
+  GitHub
 📁 Estructura del proyecto
 heladeria-docker/
 │
@@ -171,61 +174,56 @@ backend
 
 Contiene la API REST desarrollada con Node.js y Express.
 
-backend/src/config
-
+✽✽backend/src/config
 Contiene la configuración de conexión con PostgreSQL.
 
-backend/src/models
-
+✽✽backend/src/models
 Contiene las consultas SQL utilizadas para:
-
 Consultar sabores.
 Crear sabores.
 Actualizar sabores.
 Eliminar sabores.
-backend/src/controllers
 
+✽✽backend/src/controllers
 Contiene la lógica que recibe las solicitudes HTTP y devuelve las respuestas.
 
-backend/src/routes
+✽✽backend/src/routes
 
 Contiene las rutas o endpoints de la API REST.
 
-backend/src/app.js
-
+✽✽backend/src/app.js
 Configura Express, CORS, JSON y las rutas principales.
 
-backend/src/server.js
+✽✽backend/src/server.js
 
 Inicia el servidor y comprueba la conexión con PostgreSQL.
 frontend
 
 Contiene la interfaz desarrollada con React.
 
-frontend/src/services
+✽✽frontend/src/services
 
 Contiene las funciones de Axios para comunicarse con el Backend.
 
-frontend/src/App.jsx
+✽✽frontend/src/App.jsx
 
 Contiene la interfaz principal y la lógica del CRUD.
 
-frontend/src/App.css
+✽✽frontend/src/App.css
 
 Contiene los estilos específicos de la aplicación.
 
-frontend/src/main.jsx
+✽✽frontend/src/main.jsx
 
 Es el punto de entrada de React.
 
-database
+✽✽database
 
 Contiene el archivo SQL que se ejecuta automáticamente cuando PostgreSQL se inicializa por primera vez.
 
-El archivo:
 
-database/init.sql
 
+✽✽database/init.sql
 crea la tabla sabores e inserta registros iniciales.
 
 🗄️ Estructura de la base de datos
@@ -252,14 +250,27 @@ CREATE TABLE IF NOT EXISTS sabores (
 );
 🌐 Endpoints de la API
 
-La URL base del Backend es:
+✽✽La URL base del Backend es:
 http://localhost:5000
-La URL base de los sabores es:
+
+✽✽La URL base de los sabores es:
 http://localhost:5000/api/sabores
-Consultar todos los sabores
+
+✽✽Consultar todos los sabores
 GET /api/sabores
 Ejemplo:
 http://localhost:5000/api/sabores
-Consultar un sabor por ID
+
+✽✽Consultar un sabor por ID
 GET /api/sabores/:id
 http://localhost:5000/api/sabores/1
+
+✽✽POST /api/sabores
+{
+  "nombre": "Maracuyá",
+  "precio": 2.80,
+  "stock": 25,
+  "descripcion": "Helado tropical de maracuyá"
+}
+
+
