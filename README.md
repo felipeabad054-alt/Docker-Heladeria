@@ -273,4 +273,146 @@ http://localhost:5000/api/sabores/1
   "descripcion": "Helado tropical de maracuyá"
 }
 
+📦 Requisitos previos
+Para ejecutar el proyecto se necesita:
 
+Git
+Docker Desktop
+Docker Compose
+Navegador web
+
+Node.js no es obligatorio para ejecutar el proyecto con Docker, porque las imágenes del Frontend y Backend ya incluyen Node.js.
+
+✵✵Verificar Git
+git --version
+
+✵✵Docker Desktop
+docker --version
+
+✵✵Docker Desktop
+
+
+✵✵Verificar Docker
+docker --version
+
+✵✵Verificar Docker Compose
+docker compose version
+
+docker compose version
+
+docker info
+
+Docker Desktop debe estar iniciado antes de ejecutar los contenedores.
+Node.js no es obligatorio para ejecutar el proyecto con Docker, porque las imágenes del Frontend y Backend ya incluyen Node.js.
+
+🚀 Instalación y ejecución
+git clone https://github.com/felipeabad054-alt/Docker-Heladeria.git
+cd Docker-Heladeria
+dir
+
+🔐 Configuración de variables de entorno
+
+Los archivos .env pueden estar ignorados por Git para proteger las credenciales.
+‡‡Backend
+Crea el archivo:
+backend/.env
+DB_HOST=postgres
+DB_PORT=5432
+DB_NAME=heladeria
+DB_USER=postgres
+DB_PASSWORD=12345
+PORT=5000
+
+‡‡Frontend
+Crea el archivo:
+frontend/.env
+VITE_API_URL=http://localhost:5000/api
+
+7. Revisar si los puertos están ocupados
+
+Debes revisar estos tres puertos:
+
+Frontend: 5173
+Backend: 5000
+PostgreSQL: 5433
+
+Revisar puerto 5173
+netstat -ano | findstr :5173
+
+Revisar puerto 5000
+netstat -ano | findstr :5000
+Revisar puerto 5433
+netstat -ano | findstr :5433
+
+Si no aparece ningún resultado, el puerto está disponible.
+
+'''Validar Docker Compose antes de ejecutar''
+docker compose config
+ports
+environment
+POSTGRES_USER
+POSTGRES_DB
+VITE_API_URL
+
+PostgreSQL no está descargado
+Si la imagen postgres:17 no existe, puedes descargarla con:
+
+docker pull postgres:17
+
+Comprueba:
+docker images
+
+🕵️🕵️Primera ejecución🕵️🕵️
+docker compose up --build -d
+
+Verificar el estado
+docker compose ps
+
+
+Ver dónde está el error
+El comando más importante es:
+docker compose logs -f
+
+Solo PostgreSQL
+docker compose logs -f postgres
+
+Solo Backend
+docker compose logs -f backend
+
+    Probar cada capa por separado 🥷🥷
+    Probar PostgreSQL
+  docker compose exec postgres psql -U postgres -d heladeria -c "SELECT * FROM sabores;"
+Solo Frontend
+docker compose logs -f frontend
+Probar Backend
+
+Abre:
+
+http://localhost:5000
+
+O con puerto modificado:
+
+http://localhost:5001
+
+Después abre:
+
+http://localhost:5001/api/sabores
+Probar Frontend
+http://localhost:5173
+
+O con puerto modificado:
+
+http://localhost:5174
+
+
+🤵🤵Cambiar solo la contraseña conservando datos🤵🤵
+
+Entra al contenedor con el usuario actual:
+docker compose exec postgres psql -U postgres -d heladeria
+ALTER USER postgres WITH PASSWORD '1234567';
+
+Salir:
+\q
+
+Después cambia en .env:
+POSTGRES_PASSWORD=1234567
